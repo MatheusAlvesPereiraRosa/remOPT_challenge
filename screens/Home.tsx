@@ -7,7 +7,7 @@ import {
   ImageBackground,
 } from 'react-native';
 
-export const Home = () => {
+export const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -16,7 +16,9 @@ export const Home = () => {
         <View style={styles.infoContainer}>
           <Text style={styles.label}>Matheus Alves Pereira Rosa</Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Scanner')}>
               <Text style={styles.buttonText}>Scannear QR Code</Text>
             </TouchableOpacity>
           </View>
