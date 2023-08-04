@@ -1,14 +1,44 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   ImageBackground,
   TouchableOpacity,
+  Image,
 } from 'react-native';
+import {getData} from '../api/apiEndpoint';
 
 export const Pokemon = ({route, navigation}) => {
   const {id} = route.params;
+
+  const [data, setData] = useState({
+    id: 0,
+    name: '',
+    sprites: '',
+    types: {},
+  });
+
+  console.log(data);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await getData(id);
+      setData({
+        ...data,
+        id: response.data.id,
+        name: response.data.name,
+        types: response.data.types,
+        sprites: response.data.sprites.front_default,
+      });
+    } catch (error) {
+      console.error('Erro ao retornar os dados', error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -17,6 +47,14 @@ export const Pokemon = ({route, navigation}) => {
         style={styles.imageBackground}>
         <View style={styles.infoContainer}>
           <Text style={styles.label}>Id do pokemon: {id}</Text>
+          <Image
+            source={{uri: `${data.sprites}`}}
+            style={styles.imageForeground}
+          />
+          <Text style={styles.label}>Nome: {data.name}</Text>
+          {data.type.map(type => {
+            <Text style={styles.label}>Tipo: {type}</Text>;
+          })}
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.button}
@@ -49,10 +87,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   label: {
-    color: '#FF0000',
+    color: '#FFF000',
     textAlign: 'center',
     fontSize: 20,
     paddingTop: 75,
+  },
+  imageForeground: {
+    width: 250,
+    height: 250,
   },
   buttonContainer: {
     paddingBottom: 90,
