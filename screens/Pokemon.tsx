@@ -16,7 +16,7 @@ export const Pokemon = ({route, navigation}) => {
     id: 0,
     name: '',
     sprites: '',
-    types: {},
+    types: '',
   });
 
   console.log(data);
@@ -25,14 +25,29 @@ export const Pokemon = ({route, navigation}) => {
     fetchData();
   }, []);
 
+  const takeTypes = typesObj => {
+    let types = typesObj.map(item => item.type.name);
+
+    return types;
+  };
+
+  const typesString = types => {
+    let arrTypes = takeTypes(types);
+
+    let strTypes = arrTypes.join(', ');
+
+    return strTypes;
+  };
+
   const fetchData = async () => {
     try {
       const response = await getData(id);
+
       setData({
         ...data,
         id: response.data.id,
         name: response.data.name,
-        types: response.data.types,
+        types: typesString(response.data.types),
         sprites: response.data.sprites.front_default,
       });
     } catch (error) {
@@ -45,21 +60,23 @@ export const Pokemon = ({route, navigation}) => {
       <ImageBackground
         source={require('../assets/pokemon-go-wallpaper.jpg')}
         style={styles.imageBackground}>
-        <View style={styles.infoContainer}>
-          <Text style={styles.label}>Id do pokemon: {id}</Text>
-          <Image
-            source={{uri: `${data.sprites}`}}
-            style={styles.imageForeground}
-          />
-          <Text style={styles.label}>Nome: {data.name}</Text>
-          {data.type.map(type => {
-            <Text style={styles.label}>Tipo: {type}</Text>;
-          })}
+        <View style={styles.pokeContainer}>
+          <Text style={styles.label}>ID: {id}</Text>
+          {data.sprites !== '' && (
+            <Image
+              source={{uri: `${data.sprites}`}}
+              style={styles.imageForeground}
+            />
+          )}
+          <View style={styles.infoContainer}>
+            <Text style={styles.info}>Name: {data.name}</Text>
+            <Text style={styles.info}>Type: {data.types}</Text>
+          </View>
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate('Scanner')}>
-              <Text style={styles.buttonText}>Scannear QR Code</Text>
+              onPress={() => navigation.navigate('Home')}>
+              <Text style={styles.buttonText}>Voltar para o início</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -79,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  infoContainer: {
+  pokeContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignContent: 'center',
@@ -91,6 +108,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     paddingTop: 75,
+  },
+  infoContainer: {
+    display: 'flex',
+  },
+  info: {
+    color: '#FFF000',
+    fontSize: 20,
+    textAlign: 'left',
   },
   imageForeground: {
     width: 250,
