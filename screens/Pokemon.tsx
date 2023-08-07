@@ -68,7 +68,7 @@ export const Pokemon = ({route, navigation}) => {
             </View>
           )}
           <View style={styles.infoContainer}>
-            <Text style={styles.info}>Name: {data.name}</Text>
+            <Text style={styles.info}>Name: {data.name.toUpperCase()}</Text>
             <Text style={styles.info}>Type: {data.types}</Text>
           </View>
         </View>
