@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     flex: 1,
+    marginVertical: -9,
   },
   label: {
     color: '#FF0000',
