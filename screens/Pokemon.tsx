@@ -63,22 +63,21 @@ export const Pokemon = ({route, navigation}) => {
         <View style={styles.pokeContainer}>
           <Text style={styles.label}>ID: {id}</Text>
           {data.sprites !== '' && (
-            <Image
-              source={{uri: `${data.sprites}`}}
-              style={styles.imageForeground}
-            />
+            <View style={styles.imageContainer}>
+              <Image source={{uri: `${data.sprites}`}} style={styles.image} />
+            </View>
           )}
           <View style={styles.infoContainer}>
             <Text style={styles.info}>Name: {data.name}</Text>
             <Text style={styles.info}>Type: {data.types}</Text>
           </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.buttonText}>Voltar para o início</Text>
-            </TouchableOpacity>
-          </View>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.buttonText}>Voltar para o início</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
@@ -99,8 +98,6 @@ const styles = StyleSheet.create({
   pokeContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignContent: 'center',
-    alignItems: 'center',
     flex: 1,
   },
   label: {
@@ -109,20 +106,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 75,
   },
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 325,
+    height: 325,
+  },
   infoContainer: {
     display: 'flex',
+    marginLeft: -11,
   },
   info: {
     color: '#FFF000',
     fontSize: 20,
     textAlign: 'left',
-  },
-  imageForeground: {
-    width: 250,
-    height: 250,
+    marginBottom: 5,
   },
   buttonContainer: {
-    paddingBottom: 90,
+    paddingTop: 30,
+    paddingBottom: 50,
+    display: 'flex',
+    alignItems: 'center',
   },
   button: {
     padding: 15,

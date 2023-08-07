@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -14,36 +15,62 @@ export const Scanner = ({navigation}) => {
   const [pokeId, setPokeId] = useState('');
   const [id, setId] = useState('');
 
+  const markerSize = Dimensions.get('window').width * 10;
+
   console.log(pokeId);
   console.log(id);
+
+  const handleRead = e => {
+    let id = e.data.split(': ');
+    setPokeId(e.data);
+    setId(id[1]);
+  };
 
   return (
     <View style={styles.container}>
       <QRCodeScanner
-        onRead={({data}) => {
-          let id = data.split(': ');
-          setPokeId(data);
-          setId(id[1]);
-        }}
+        onRead={handleRead}
         flashMode={RNCamera.Constants.FlashMode.off}
+        showMarker={true}
+        customMarker={
+          <View style={styles.customMarkerContainer}>
+            <View style={styles.topLeft} />
+            <View style={styles.topLeft2} />
+            <View style={styles.topRight} />
+            <View style={styles.topRight2} />
+            <View style={styles.bottomLeft} />
+            <View style={styles.bottomLeft2} />
+            <View style={styles.bottomRight} />
+
+            <View style={styles.bottomRight2} />
+          </View>
+        }
+        topViewStyle={{position: 'absolute', bottom: '29%', zIndex: 2}}
+        containerStyle={{flex: 1}}
+        cameraContainerStyle={{flex: 1}}
+        cameraStyle={{flex: 1, height: '100%'}}
+        bottomViewStyle={{position: 'absolute', bottom: 45}}
         topContent={
           <View>
-            <Text style={styles.id}>{pokeId}</Text>
+            {pokeId && <Text style={styles.id}>{pokeId}</Text>}
+            {pokeId === '' && <Text>Aponte a câmera para o código QR</Text>}
           </View>
         }
         bottomContent={
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() =>
-                navigation.navigate('Pokemon', {
-                  id: id,
-                })
-              }>
-              <Text style={styles.buttonText}>
-                Ver informações sobre pokemon
-              </Text>
-            </TouchableOpacity>
+          <View>
+            {id && (
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() =>
+                  navigation.navigate('Pokemon', {
+                    id: id,
+                  })
+                }>
+                <Text style={styles.buttonText}>
+                  Ver informações sobre pokemon
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
         }
       />
@@ -53,9 +80,79 @@ export const Scanner = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
     flex: 1,
     backgroundColor: '#000',
+  },
+  customMarkerContainer: {
+    position: 'relative',
+    width: 275,
+    height: 275,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  topLeft: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 50,
+    height: 5,
+    backgroundColor: '#FFF',
+  },
+  topLeft2: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 5,
+    height: 50,
+    backgroundColor: '#FFF',
+  },
+  topRight: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 50,
+    height: 5,
+    backgroundColor: '#FFF',
+  },
+  topRight2: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 5,
+    height: 50,
+    backgroundColor: '#FFF',
+  },
+  bottomLeft: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: 5,
+    height: 50,
+    backgroundColor: '#FFF',
+  },
+  bottomLeft2: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: 50,
+    height: 5,
+    backgroundColor: '#FFF',
+  },
+  bottomRight: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 50,
+    height: 5,
+    backgroundColor: '#FFF',
+  },
+  bottomRight2: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 5,
+    height: 50,
+    backgroundColor: '#FFF',
   },
   cameraContainer: {
     flex: 1,
@@ -63,10 +160,13 @@ const styles = StyleSheet.create({
   id: {
     color: '#FFF',
   },
-  buttonContainer: {
-    paddingTop: 70,
+  text: {
+    textAlign: 'center',
+    color: '#FFF',
+    fontWeight: '300',
   },
   button: {
+    marginTop: '31%',
     padding: 15,
     borderRadius: 75,
     backgroundColor: '#FF0000',
