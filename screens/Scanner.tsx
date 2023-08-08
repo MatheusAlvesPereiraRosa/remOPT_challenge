@@ -1,25 +1,19 @@
 import React from 'react';
 import {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-  Dimensions,
-} from 'react-native';
+
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+
 import {RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 export const Scanner = ({navigation}) => {
+  // dado bruto extraído pelo QR code, para ser mostrado na tela
   const [pokeId, setPokeId] = useState('');
+
+  // ID extraído dos dados recolhidos pelo QR code
   const [id, setId] = useState('');
 
-  const markerSize = Dimensions.get('window').width * 10;
-
-  console.log(pokeId);
-  console.log(id);
-
+  // função para lidar com a leitura do QR code
   const handleRead = e => {
     let id = e.data.split(': ');
     setPokeId(e.data);
@@ -41,7 +35,6 @@ export const Scanner = ({navigation}) => {
             <View style={styles.bottomLeft} />
             <View style={styles.bottomLeft2} />
             <View style={styles.bottomRight} />
-
             <View style={styles.bottomRight2} />
           </View>
         }

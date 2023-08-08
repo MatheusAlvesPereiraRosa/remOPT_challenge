@@ -6,6 +6,7 @@ import {Scanner} from '../screens/Scanner';
 
 const Stack = createStackNavigator();
 
+// componente de rotas das telas
 export default function StackRoutes() {
   return (
     <Stack.Navigator

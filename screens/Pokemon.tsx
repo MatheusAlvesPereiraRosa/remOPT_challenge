@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -7,11 +8,14 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+
 import {getData} from '../api/apiEndpoint';
 
 export const Pokemon = ({route, navigation}) => {
+  // Pegando o id que é passado da outra rota
   const {id} = route.params;
 
+  // hook que guarda os dados do pokemon
   const [data, setData] = useState({
     id: 0,
     name: '',
@@ -21,16 +25,19 @@ export const Pokemon = ({route, navigation}) => {
 
   console.log(data);
 
+  // fazendo a requisição assim que a tela é renderizada
   useEffect(() => {
     fetchData();
   }, []);
 
+  // transformando o vetor de types em algo mais simples
   const takeTypes = typesObj => {
     let types = typesObj.map(item => item.type.name);
 
     return types;
   };
 
+  // pegando os tipo(s) e guardando em uma string para mostrar na tela
   const typesString = types => {
     let arrTypes = takeTypes(types);
 
@@ -39,6 +46,7 @@ export const Pokemon = ({route, navigation}) => {
     return strTypes;
   };
 
+  // função para realizar as requisições
   const fetchData = async () => {
     try {
       const response = await getData(id);
