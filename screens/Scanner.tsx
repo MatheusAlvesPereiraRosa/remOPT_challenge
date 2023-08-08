@@ -46,7 +46,9 @@ export const Scanner = ({navigation}) => {
         topContent={
           <View>
             {pokeId && <Text style={styles.id}>{pokeId}</Text>}
-            {pokeId === '' && <Text>Aponte a câmera para o código QR</Text>}
+            {pokeId === '' && (
+              <Text style={styles.text}>Aponte a câmera para o código QR</Text>
+            )}
           </View>
         }
         bottomContent={
@@ -151,7 +153,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   id: {
+    textAlign: 'center',
     color: '#FFF',
+    fontWeight: '300',
   },
   text: {
     textAlign: 'center',
