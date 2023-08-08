@@ -1,79 +1,50 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# Tech-challenge 
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Seja bem vindo ao meu projeto, sou Matheus Alves e esse projeto foi feito para concorrer a vaga de Analista de desenvolvimento mobile na RemOpt de acordo com as especificações e condições estabelecidas pelo teste técnico.
 
-## Step 1: Start the Metro Server
+## Instalação
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
+Clone o projeto do github com o comando:
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+  git clone git@github.com:MatheusAlvesPereiraRosa/remOPT_challenge.git
 ```
 
-## Step 2: Start your Application
+Faça algumas configurações que estão informados no site oficial do react-native (se você já tiver feito, não é necessário)
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+https://reactnative.dev/docs/environment-setup
 
-### For Android
+Rode o comando npm i no terminal que desejar antes de iniciar o projeto:
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+  npm install ou npm i
 ```
 
-### For iOS
+Após isso, rode o projeto com o comando:
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+  npx react-native run-android
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+E pronto, o projeto vai começar a compilar e rodará em qualquer aparelho android (IOS eu não cheguei a testar, mas lembro de ter acionado as permissões para usar as funcionalidades do sistema operacional), seja ele virtual ou físico.
+    
+## Principais Bibliotecas/Frameworks utilizados
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+**@react-navigation:** É uma biblioteca que permite a navegação entre telas na aplicação, podendo escolher entre quatro tipos dela: stack, stack-native, drawer e tab.
 
-## Step 3: Modifying your App
+**Axios:** É uma biblioteca que permite realizar requisições HTTP para endpoints por meio de funções oferecidos pela biblioteca. Seu principal concorrente é a fetchAPI que veio depois para ser um opção natural do React.
 
-Now that you have successfully run the app, let's modify it.
+**react-native-camera/react-native-qrcode-scanner:** É uma biblioteca que permite o uso da câmera apenas para scannear QR code, e após isso realizar qualquer operação necessária com os dados scanneados.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Print do insomnia fazendo requisição
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+![Requisição API - Print Insomnia](https://github.com/MatheusAlvesPereiraRosa/remOPT_challenge/assets/88355395/3b58c068-ddcc-48c9-9097-bb94b271305c)
 
-## Congratulations! :tada:
+Obs.: A imagem também está no projeto
 
-You've successfully run and modified your React Native App. :partying_face:
+## Considerações
 
-### Now what?
+Como tinha sido tirado a dúvida com a pessoa responsável pelo teste, eu fiz a requisição via axios em vez de utilizar a interface retrofit, por ser mais adequado ao react-native e para não gerar o "ninho de vespas".
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
