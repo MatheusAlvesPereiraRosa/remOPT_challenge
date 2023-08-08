@@ -27,7 +27,7 @@ Após isso, rode o projeto com o comando:
   npx react-native run-android
 ```
 
-E pronto, o projeto vai começar a compilar e rodará em qualquer aparelho android (IOS eu não cheguei a testar, mas lembro de ter acionado as permissões para usar as funcionalidades do sistema operacional), seja ele virtual ou físico.
+E pronto, o projeto vai começar a compilar e rodará em qualquer aparelho android que estiver conectado via USB ou rodando em emulador (IOS eu não cheguei a testar, mas lembro de ter acionado as permissões para usar as funcionalidades do sistema operacional).
     
 ## Principais Bibliotecas/Frameworks utilizados
 
@@ -36,6 +36,8 @@ E pronto, o projeto vai começar a compilar e rodará em qualquer aparelho andro
 **Axios:** É uma biblioteca que permite realizar requisições HTTP para endpoints por meio de funções oferecidos pela biblioteca. Seu principal concorrente é a fetchAPI que veio depois para ser um opção natural do React.
 
 **react-native-camera/react-native-qrcode-scanner:** É uma biblioteca que permite o uso da câmera apenas para scannear QR code, e após isso realizar qualquer operação necessária com os dados scanneados.
+
+Obs.: As outras dependencias são necessárias para que as bibliotecas principais funcionem.
 
 ## Print do insomnia fazendo requisição
 
